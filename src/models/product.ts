@@ -3,24 +3,14 @@ import { Product } from "../interfaces/product.interface";
 
 const ProductSchema = new Schema <Product>(
     {
-        index : { 
-            type: Number
+        subSequences: [[Number]]
         },
-        createdAt: 
-        { 
-            type: Date
-        },
-        subSequences: 
-        { 
-            type: Number
-        }
-    },
         {
             timestamps: true,
             versionKey: false,
         }
 )
 
-const ProductModel = model("items", ProductSchema);
+const ProductModel = model("products", ProductSchema);
 
-export default ProductSchema;
+export default ProductModel;

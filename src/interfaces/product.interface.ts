@@ -1,5 +1,5 @@
 export interface Product {
-    index: number,
+    sequence: number,
     createdAt: Date,
     subSequences?: string,
     price: number,
