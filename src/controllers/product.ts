@@ -17,9 +17,9 @@ const getSubsequence = (req: Request, res:Response) => {
 const generateSubsequences = async (req: Request, res: Response) => {
     try {
 
-      const productIds = req.body.productIds; // Array de IDs de productos
+      const productIds = req.body.productIds; 
       const subsequences = generateAllSubsequences(productIds);
-      // Aquí guardarías las subsecuencias en MongoDB
+  
       res.status(201).json(subsequences);
     } catch (e : any) {
       handleHttpError(res, 'ERROR_GENERATING_SUBSEQUENCES', e);
@@ -36,7 +36,7 @@ const createSubsequence = async (req: Request, res: Response) => {
     }
   };
   
-  // Controlador para listar las últimas 10 subsecuencias
+
   const listSubsequences = async (req: Request, res: Response) => {
     try {
         const subsequences = await ProductModel.find().sort({ createdAt: -1 }).limit(10);

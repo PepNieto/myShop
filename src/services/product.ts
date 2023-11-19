@@ -12,9 +12,10 @@ const getSequence = () => {
 const generateAllSubsequences = (productIds: number[]): number[][] => {
     let subsequences:any= [];
 
-    // Genera todas las combinaciones posibles
     const generate = (start: number, subsequence: number[]) => {
-      subsequences.push([...subsequence]);
+        if (subsequence.length > 0) {
+            subsequences.push([...subsequence]);
+        }
   
       for (let i = start; i < productIds.length; i++) {
         generate(i + 1, [...subsequence, productIds[i]]);
