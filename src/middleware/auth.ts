@@ -5,7 +5,7 @@ interface TokenData extends Request {
     user?: Object; 
   }
 
-const verificarToken = (req: TokenData, res: Response, next: NextFunction) => {
+const checkToken = (req: TokenData, res: Response, next: NextFunction) => {
     const token = req.headers['authorization'];
 
     if (!token) {
@@ -20,3 +20,4 @@ const verificarToken = (req: TokenData, res: Response, next: NextFunction) => {
         return res.status(401).json({ message: 'Unauthorized!' });
     }
 };
+export { checkToken }

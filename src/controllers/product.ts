@@ -4,16 +4,6 @@ import { generateAllSubsequences } from '../services/product';
 import { createProduct, listProducts } from '../services/product';
 import ProductModel from "../models/product";
 
-const getSubsequence = (req: Request, res:Response) => {
-    try{
-        res.send("data")
-    }
-    catch(e){
-
-        handleHttpError(res, 'ERROR_GET_SUBSEQUENCE')
-    }
-}
-
 const generateSubsequences = async (req: Request, res: Response) => {
     try {
 
@@ -26,17 +16,6 @@ const generateSubsequences = async (req: Request, res: Response) => {
     }
   };
 
-const createSubsequence = async (req: Request, res: Response) => {
-    try{
-        res.send("createSubsequence")
-    }
-    catch(e : any){
-
-        handleHttpError(res, 'ERROR_GET_SUBSEQUENCE', e)
-    }
-  };
-  
-
   const listSubsequences = async (req: Request, res: Response) => {
     try {
         const subsequences = await ProductModel.find().sort({ createdAt: -1 }).limit(10);
@@ -48,4 +27,4 @@ const createSubsequence = async (req: Request, res: Response) => {
     }
 };
 
-export {getSubsequence, generateSubsequences, createSubsequence, listSubsequences}
+export {generateSubsequences, listSubsequences}
