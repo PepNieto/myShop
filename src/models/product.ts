@@ -1,16 +1,16 @@
-import { Schema, Types, model, Model } from "mongoose";
-import { Product } from "../interfaces/product.interface";
+import { Schema, Types, model, Model } from 'mongoose'
+import { type Product } from '../interfaces/product.interface'
 
 const ProductSchema = new Schema <Product>(
-    {
-        subSequences: [[Number]]
-        },
-        {
-            timestamps: true,
-            versionKey: false,
-        }
+  {
+    subSequences: [[Number]]
+  },
+  {
+    timestamps: true,
+    versionKey: false
+  }
 )
 
-const ProductModel = model("products", ProductSchema);
+const ProductModel = model('products', ProductSchema)
 
-export default ProductModel;
+export default ProductModel
