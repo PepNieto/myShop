@@ -1,18 +1,15 @@
 import ProductModel from '../models/product'
 import { type Product } from '../interfaces/product.interface'
 
-const createSequence = async (item: Product) => {
+const createSequence = async (item: Product): Promise<Product> => {
   const responseInsert = await ProductModel.create(item)
   return responseInsert
 }
 
-const getSequence = () => {
-
-}
 const generateAllSubsequences = (productIds: number[]): number[][] => {
   const subsequences: any = []
 
-  const generate = (start: number, subsequence: number[]) => {
+  const generate = (start: number, subsequence: number[]): void => {
     if (subsequence.length > 0) {
       subsequences.push([...subsequence])
     }
@@ -48,4 +45,4 @@ const listProducts = async (limit: number = 10): Promise<Product[]> => {
   return await ProductModel.find().sort({ createdAt: -1 }).limit(limit)
 }
 
-export { createSequence, getSequence, generateAllSubsequences, createProduct, listProducts }
+export { createSequence, generateAllSubsequences, createProduct, listProducts }

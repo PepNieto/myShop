@@ -4,3 +4,6 @@ export interface Product {
   subSequences?: string
   price: number
 }
+export interface User {
+  name: string
+}

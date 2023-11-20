@@ -1,9 +1,9 @@
 import { type Response } from 'express'
 
-const handleHttpError = (res: Response, message: string, error?: any) => {
+const handleHttpError = (res: Response, message: string, error?: any): void => {
   const response = {
     message,
-    error: error ? error.message : null
+    error: error != null ? error.message : null
   }
   res.status(500).send(response)
 }
