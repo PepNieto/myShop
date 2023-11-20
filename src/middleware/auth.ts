@@ -14,15 +14,18 @@ const checkToken = (req: TokenData, res: Response, next: NextFunction): void => 
   }
 
   const secretKey = process.env.JWT_SECRET_KEY
+
   if (secretKey == null) {
     res.status(500).json({ message: 'Secret key is not configured.' })
-    try {
-      const decoded = jwt.verify(token as string, process.env.JWT_SECRET_KEY as string)
-      req.user = decoded
-      next()
-    } catch (error) {
-      res.status(401).json({ message: 'Unauthorized!' })
-    }
+  }
+  try {
+    const decoded = jwt.verify(token as string, process.env.JWT_SECRET_KEY as string)
+    req.user = decoded
+    next()
+  } catch (error) {
+    console.log(error)
+    res.status(401).json({ message: 'Unauthorized!' })
   }
 }
+
 export { checkToken }

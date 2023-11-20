@@ -17,9 +17,8 @@ const generateSubsequences = async (req: Request, res: Response): Promise<void> 
 
 const listSubsequences = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.log('controller subsequences')
     const subsequences = await ProductModel.find().sort({ createdAt: -1 }).limit(10)
-    console.log('subsequences')
-    console.log(subsequences)
     res.json(subsequences)
   } catch (e: any) {
     handleHttpError(res, 'ERROR_LISTING_SUBSEQUENCES', e)

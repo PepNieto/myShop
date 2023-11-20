@@ -6,10 +6,12 @@ import { checkToken } from '../middleware/auth'
 const router = Router()
 
 router.use('/generateSubsequence', checkToken, (req, res) => {
-  generateSubsequences(req, res)
+  void generateSubsequences(req, res)
 })
+
 router.use('/listSubsequences', checkToken, (req, res) => {
-  listSubsequences(req, res)
+  console.log('listsubsequences')
+  void listSubsequences(req, res)
 })
 
 router.use('/getToken', getToken)
