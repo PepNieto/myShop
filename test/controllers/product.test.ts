@@ -1,22 +1,30 @@
-import { mockReq, mockRes } from 'jest-mock-express'
-import { generateSubsequences } from '../../src/controllers/product'
-import * as productService from '../../src/services/product'
-
-jest.mock('../../src/services/product')
-
-describe('generateSubsequences Controller', () => {
-  it('should respond with generated subsequences', async () => {
-    const req = mockReq({
-      body: { productIds: [1, 2, 3] }
+import { generateAllSubsequences } from '../../src/services/product'
+import request from 'supertest'
+import { app } from '../../src/index'
+jest.mock('../../src/models/product', () => {
+  return {
+    __esModule: true,
+    default: jest.fn().mockImplementation(() => ({
+      save: jest.fn().mockResolvedValue({})
+    }))
+  }
+})
+describe('generateSubsequences', () => {
+  describe('get generateSubquence route',
+    () => {
+      it('should return a forbidden status (403)', async () => {
+        await request(app)
+          .get('/generateSubSequence')
+          .expect(403)
+      })
     })
-    const res = mockRes()
+})
+describe('generateSubsequences', () => {
+  const productIds: number[] = [1, 2, 3]
 
-    productService.generateAllSubsequences.mockReturnValue([[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]])
-
-
-    await generateSubsequences(req, res)
-
-    expect(res.status).toHaveBeenCalledWith(201)
-    expect(res.json).toHaveBeenCalledWith([[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]])
+  it('should respond with generated subsequences for 1, 2, 3', () => {
+    expect(
+      generateAllSubsequences(productIds))
+      .toStrictEqual([[1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]])
   })
 })
