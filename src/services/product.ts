@@ -1,11 +1,6 @@
 import ProductModel from '../models/product'
 import { type Product } from '../interfaces/product.interface'
 
-const createSequence = async (item: Product): Promise<Product> => {
-  const responseInsert = await ProductModel.create(item)
-  return responseInsert
-}
-
 const generateAllSubsequences = (productIds: number[]): number[][] => {
   const subsequences: any = []
 
@@ -36,13 +31,8 @@ const generateAllSubsequences = (productIds: number[]): number[][] => {
   return subsequences
 }
 
-const createProduct = async (productData: Product): Promise<Product> => {
-  const product = new ProductModel(productData)
-  return await product.save()
-}
-
 const listProducts = async (limit: number = 10): Promise<Product[]> => {
   return await ProductModel.find().sort({ createdAt: -1 }).limit(limit)
 }
 
-export { createSequence, generateAllSubsequences, createProduct, listProducts }
+export { generateAllSubsequences, listProducts }
